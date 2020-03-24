@@ -27,30 +27,30 @@ export default class Register1 extends Component{
             value:999
         }]
         return(
-            <ScrollView style={styles.container} >
-                    <KeyboardAvoidingView style={styles.container} >
+            // <ScrollView style={styles.container} >
+            <View style={{flex:1}}>
+                    <KeyboardAvoidingView style={[styles.container]} >
                     
                     <View style={styles.textview}>
                         <Text style={styles.text}>Mobile Number</Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Dropdown  data={data} label="987" />
+                        <Dropdown  style={{width:50,padding:20}}data={data} label="987" />
                         <TextInput placeholder="Mobile Number" style={styles.textInput}/>
                     </View>
                     <View style={styles.textview}>
                     <Text style={styles.text}>Enter your Email</Text>
                     <TextInput placeholder="Email" style={styles.textInput}/>
                     </View>
-                    <View style={styles.loginButton}>
-                    <TouchableOpacity > 
+                    <View style={styles.Button} >
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('verify')}> 
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
-                    </View>
-                    
-                   
-                                
+                    </View>       
                 </KeyboardAvoidingView>
-                </ScrollView>
+                
+                </View>
+                //  </ScrollView>
         )
     }
 }

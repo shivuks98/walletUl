@@ -5,59 +5,78 @@ import Styles from '../../resources/styles/Styles'
 export default class terms extends Component{
     render(){
         return(
-            <View>
+            <View style={styles.cont}>
                 <ScrollView>
-                    <Text>
-                        huifshshusggsg;
-                        sgsgljhgshhlgjsgsh ksjhdgjbdvhghbjshfj;vbgavhjga b a vabgjabgbgvtgbb
-
-                        tavbtaytbvtrkjdsbfsbvbsvbksbvbsvjksbkb
-                        gshgjhsjgs;gshgjhsjgssgh
-                        sugsh
-                        sgshghrurhw
-                        ssjk;gshgjhsjgssjfsgb
-                        sgjbsbk
+                    <Text style={{fontSize:18,textAlign:'center'}}>Terms and Conditions</Text>
+                    <Text style={styles.text}>
+                        have to write the terms and Conditions
+                        
+                        
                     </Text>
                 </ScrollView>
                 <View>
-                    <Text style={{paddingLeft:20,paddingRight:20}}>
+                <Text style={styles.text}>
                         You must read and agree to the above Terms and Conditions to use 
                         the b-Wallet. 
                         By cancelling you will not be able to use any of the services of the b-Wallet
                     </Text>
-                    <View style={sty.bottomContainer}>
-                        <TouchableOpacity style={sty.agree}
-                        onPress={()=>this.props.navigation.navigate('register1')}
-                        >
-                            <Text style={sty.text}>I AGREE</Text>
+                <View style={styles.bottomview}>
+                    <View style={styles.view}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('register1')}>
+                        <Text style={styles.btntext}>I AGREE</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={sty.notagree}>
-                            <Text style={sty.text}>I DO NOT AGREE</Text>
+                        
+                    </View>
+                    <View style={styles.view1}>
+                    <TouchableOpacity>
+                        <Text style={styles.btntext}>I DONOT AGREE</Text>
                         </TouchableOpacity>
                     </View>
+                </View>
                 </View>
             </View>
         )
     }
 }
-const sty=StyleSheet.create({
-    bottomContainer:{
+const styles=StyleSheet.create({
+    cont:{
+        flex:1,
+        padding:10,
+        backgroundColor:'#ffff'
+    },
+    
+    bottomview:{
         flexDirection:'row',
-        padding:30,
-        justifyContent:"space-around",
+        alignItems:'center',
+        marginTop:20
     
     },
-    agree:{
-        backgroundColor:'gray',
-        width:150,
+    view:{
+        alignItems:'center',
         height:30,
-        
+        backgroundColor:'gray',
+        margin:15,
+        width:150,
+        justifyContent:'center'
+
     },
-    notagree:{
-        backgroundColor:'red',
-        width:150
+    view1:{
+        alignItems:'center',
+        alignContent:'center',
+        height:30,
+        width:150,
+        backgroundColor:'#d50000',
+        justifyContent:"center"
     },
     text:{
-        textAlign:'center'
+        fontSize:15,
+        textAlign:'justify'
+    },
+    btntext:{
+        color:'#FFFF',
+        fontSize:16,
+        textAlign:'center',
+        
     }
 })
+

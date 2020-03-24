@@ -5,61 +5,51 @@ export default StyleSheet.create({
         flexDirection:"column",
         // alignItems:'stretch',
         backgroundColor:"white",
-        alignContent:'flex-start'
+        alignContent:'flex-start',
+        // padding:20
     },
     imagecontainer:{
-        alignItems:'center'
+        alignItems:'center',
+        paddingTop:20
     },
     image:{
-        
-        // alignItems:'center',
-        width:100,
+        width:120,
         height:60,
-        alignSelf:'stretch'
     },
     textview:{
         alignItems:'stretch',
         paddingLeft:50,
-        paddingRight:50
+        paddingRight:50,
+        
     },
     text:{
-        marginTop:20,
-        fontSize:18
-    },
-    numberView:{
-        // alignContent:'center',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        paddingHorizontal:80 
-    },
-    loginButton:{
-        // width:50,
-        alignItems:'center',
-        backgroundColor:'red',
-        height:40,
-        marginBottom:10   
-        
-    },
-    registerButton:{
-        width:'100%',
-        alignItems:'center',
-        backgroundColor:'gray',
-        height:40,
-        alignContent:"flex-end",
-        bottom:0,
-        
-    },
-    buttonText:{
-        fontSize:20,
-        fontWeight:'bold',
-        textAlign:'center',
-        color:'#ffff'
+        marginTop:10,
+        fontSize:16
     },
     textInput:{
-        marginBottom:10,
+        borderBottomColor:"red",
         borderBottomWidth:1,
         
-        borderBottomColor:'red',
+    },
+    numberView:{
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        paddingRight:30,
         
+    },
+    Button:{
+        width:'100%',
+        backgroundColor:"red",
+        position:'absolute',
+        bottom:0,
+        height:40
+    },
+    buttonText:{
+        textAlign:'center',
+        color:'#ffff',
+        fontSize:20,
+        justifyContent:'center',
+        alignContent:'center'
     }
+    
 })
