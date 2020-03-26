@@ -11,6 +11,10 @@ import Test from '../screens/l'
 import Test2 from '../screens/test'
 import Register2 from '../screens/RegisterVerify'
 import RegisterForm from '../screens/RegisterForm'
+import addAddress from '../screens/addAddress'
+import SetSecurity from '../screens/SetSecurityAnswers'
+import SetPin from '../screens/SetPin'
+import UploadPhoto from '../screens/UploadPhoto'
 
 const Stack=createStackNavigator();
 
@@ -30,12 +34,17 @@ export default class routes extends React.Component{
                 source={require('../../resources/images/bWallet2.png')}/>}}>
                     {/* <Stack.Screen name='test' component={Test2}/> */}
                     
-                    {/* <Stack.Screen name='testHome' component={Test}/> */}
-                    <Stack.Screen name='Home' component={Login}/>
-                    <Stack.Screen name='terms' component={terms} options={{title:'Terms and Conditions'}}/>
-                    <Stack.Screen name='register1' component={Register1} options={{title:'Registration'}}/>
-                    <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/>
+                    {/* <Stack.Screen name='l' component={Test}/> */}
+                    {/* <Stack.Screen name='Home' component={Login}/> */}
+                    {/* <Stack.Screen name='terms' component={terms} options={{title:'Terms and Conditions'}}/> */}
+                    {/* <Stack.Screen name='register1' component={Register1} options={{title:'Registration'}}/> */}
+                    {/* <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/> */}
                     <Stack.Screen name='registerForm' component={RegisterForm} options={{title:'Registration'}}/>
+                    <Stack.Screen name='addAddress' component={addAddress} options={{title:'Registration'}}/>
+                    <Stack.Screen name='securityAnswer' component={SetSecurity} options={{title:'Set Security Answers'}}/>
+                    <Stack.Screen name='SetPin' component={SetPin} options={{title:'Set Pin'}}/>
+                    <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Photo'}}/>
+                
                 </Stack.Navigator>
             </NavigationContainer>
 
