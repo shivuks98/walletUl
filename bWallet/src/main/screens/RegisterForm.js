@@ -57,12 +57,7 @@ class RegisterForm extends React.Component{
                         <View style={Styles.container}>
                             <View style={{margin:25,borderRadius:5,width:'80%',backgroundColor:'#ffff',flex:1}}>
                             <Address/>
-                            <View style={Styles.savebtn}>
-                            <TouchableOpacity
-                            onPress={()=>this.setState({visible:false})} >
-                                <Text style={styles.buttonText}> Save</Text>
-                            </TouchableOpacity>
-                            </View>
+                            
                             {/* <Button title='Save' style={{width:'50%'}} onPress={()=>this.setState({visible:false})}></Button> */}
                     </View>
                 </View>
@@ -92,10 +87,8 @@ const Styles=StyleSheet.create({
 
     },
     savebtn:{
-        
         backgroundColor:'red',
         alignItems:"center",
-        
         marginHorizontal:80,
         borderRadius:10,
         height:40,

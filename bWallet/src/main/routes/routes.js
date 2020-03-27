@@ -45,7 +45,7 @@ export default class routes extends React.Component{
                     {/* <Stack.Screen name='addAddress' component={addAddress} options={{title:'Registration'}}/> */}
                     {/* <Stack.Screen name='securityAnswer' component={SetSecurity} options={{title:'Set Security Answers'}}/> */}
                 {/* <Stack.Screen name='SetPin' component={SetPin} options={{title:'Set Pin'}}/> */}
-                    {/* <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Recent Photo'}}/> */}
+                    <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Recent Photo'}}/>
                     <Stack.Screen name='Nationalid' component={NationalId} options={{title:'National ID'}}/>
                     <Stack.Screen name='Confirm' component={ConfirmPhoto} options={{title:'Confirm'}}/>
                 

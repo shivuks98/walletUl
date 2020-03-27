@@ -1,7 +1,7 @@
 import React from 'react'
-import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
+import { View,Text,TextInput,TouchableOpacity,Image,StyleSheet } from 'react-native'
 import Styles from '../../resources/styles/Styles'
-import  ImagePicker  from 'react-native-image-picker'
+// import  ImagePicker  from 'react-native-image-picker'
 
 export default class ConfirmPhoto extends React.Component{
     constructor(props){
@@ -13,27 +13,33 @@ export default class ConfirmPhoto extends React.Component{
         return(
             <View style={Styles.container}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>Recent Photo</Text>
-                <View style={[Styles.container,{flexDirection:'row',alignItems:'center',justifyContent:'center',}]}>
-                    <Image source={require('../../resources/images/fileupload.png')} />
-                    <Image style={{alignItems:'baseline'}} source={require('../../resources/images/edit.png')} />
+                <View style={design.imageview}>
+                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                    <TouchableOpacity>
+                        <Image style={{alignItems:'baseline'}} source={require('../../resources/images/edit.png')} />
+                    </TouchableOpacity>
                 </View>
-                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'flex-start'}}>
+                <View style={design.content}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>National ID</Text>
-                <TextInput style={Styles.textInput} />
+                <TextInput style={[Styles.textInput,{width:'50%'}]} />
                 </View>
                 
-                <View style={[Styles.container,{flexDirection:'row',alignItems:'center',justifyContent:'center'}]}>
-                    <Image source={require('../../resources/images/fileupload.png')} />
-                    <Image source={require('../../resources/images/edit.png')} />
+                <View style={design.imageview}>
+                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                    <TouchableOpacity>
+                        <Image source={require('../../resources/images/edit.png')} />
+                    </TouchableOpacity>
                 </View>
-                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'flex-start'}}>
+                <View style={design.content}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>Passport/DL</Text>
-                <TextInput style={Styles.textInput} />
+                <TextInput style={[Styles.textInput,{width:'50%'}]} />
                 </View>
                 
-                <View style={[Styles.container,{flexDirection:'row',alignItems:'center',paddingTop:0,justifyContent:'center'}]}>
-                    <Image source={require('../../resources/images/fileupload.png')} />
-                    <Image source={require('../../resources/images/edit.png')} />
+                <View style={design.imageview}>
+                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                    <TouchableOpacity>
+                        <Image source={require('../../resources/images/edit.png')} />
+                    </TouchableOpacity>
                 </View>
                
                 
@@ -46,3 +52,14 @@ export default class ConfirmPhoto extends React.Component{
         )
     }
 }
+const design=StyleSheet.create({
+    imageview:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    content:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'flex-start'}
+})
