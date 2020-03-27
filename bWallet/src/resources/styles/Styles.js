@@ -50,6 +50,14 @@ export default StyleSheet.create({
         fontSize:20,
         justifyContent:'center',
         alignContent:'center'
+    },
+    photo:{
+        width:100,
+        height:80,
+        margin:10,
+        borderColor:'black',
+        borderWidth:1,
+        borderRadius:5
     }
     
 })
