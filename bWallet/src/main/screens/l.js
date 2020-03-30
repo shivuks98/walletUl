@@ -7,9 +7,17 @@ import CountryPicker from 'react-native-country-picker-modal'
 export default class Login extends React.Component{
     render(){
         return(
-            <View>
-                <CountryPicker withFilter/>
-            </View>
+            <KeyboardAvoidingView style={{flex:1}} >
+                <View style={{flex:1}}>
+                    <TextInput placeholder="kkkk"/>
+                </View>
+            <ScrollView style={{backgroundColor:'red'}}>
+                <View style={{flex:1,backgroundColor:'blue'}}>
+                    <Text>hi</Text>
+                </View>
+
+            </ScrollView>
+            </KeyboardAvoidingView>
         )
     }
 }

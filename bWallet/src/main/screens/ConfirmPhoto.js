@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Text,TextInput,TouchableOpacity,Image,StyleSheet } from 'react-native'
+import { View,Text,TextInput,TouchableOpacity,Image,StyleSheet,KeyboardAvoidingView } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 // import  ImagePicker  from 'react-native-image-picker'
 

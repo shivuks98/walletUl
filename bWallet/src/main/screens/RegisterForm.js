@@ -3,6 +3,7 @@ import { View,Text,TextInput,TouchableOpacity,StyleSheet,Button, Image,Modal } f
 import styles from '../../resources/styles/Styles'
 import Address from './addAddress'
 import RadioForm, {RadioButton,RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
 var gender=[
     {label:'Male',value:0},
@@ -13,8 +14,13 @@ class RegisterForm extends React.Component{
         super(props)
         this.state={
             visible:false,
-            value:0
+            value:0,
+            date:false,
+            dob:null
         }
+    }
+    handle=()=>{
+        setDataPickerVisibility(true)
     }
     render(){
         return(
@@ -27,7 +33,12 @@ class RegisterForm extends React.Component{
                     <Text style={styles.text}>Last Name</Text>
                     <TextInput style={styles.textInput}/>
                     <Text style={styles.text}>Date of Birth</Text>
-                    <TextInput style={styles.textInput}/>
+                    <DateTimePickerModal isVisible={this.state.date} mode="date"
+                        onCancel={()=>this.setState({date:false,})} 
+                        onConfirm={(date)=>{this.setState({date:false,dob:date})
+                        console.log(this.state.dob)}
+                        }/>
+                    <TextInput style={styles.textInput}  onFocus={()=>this.setState({date:true})}/>
                     <Text style={[styles.text,{paddingBottom:15}]}>Gender</Text>
                     
                     <RadioForm radio_props={gender}
@@ -53,12 +64,16 @@ class RegisterForm extends React.Component{
                     </View>
                     
                     <Modal transparent={true} visible={this.state.visible}>
-                
                         <View style={Styles.container}>
                             <View style={{margin:25,borderRadius:5,width:'80%',backgroundColor:'#ffff',flex:1}}>
                             <Address/>
-                            
-                            {/* <Button title='Save' style={{width:'50%'}} onPress={()=>this.setState({visible:false})}></Button> */}
+                            <View  >
+                            <TouchableOpacity onPress={()=>this.setState({visible:false})}
+                            style={[styles.Button,{width:100,bottom:10,borderRadius:10,alignSelf:'center'}]}>
+                                <Text style={styles.buttonText}>Save</Text>
+                            </TouchableOpacity>
+                            </View>
+                            {/* <Button title='Save' style={{}} onPress={()=>this.setState({visible:false})}></Button> */}
                     </View>
                 </View>
             </Modal>

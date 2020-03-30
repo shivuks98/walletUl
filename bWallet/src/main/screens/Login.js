@@ -29,6 +29,7 @@ export default class Login extends React.Component{
                         <Dropdown  style={{width:50,padding:20}}data={data} label='978' />
                         <TextInput placeholder="Mobile Number" style={styles.textInput}/>
                     </View>
+                    
                     <View style={styles.textview}>
                         <Text style={styles.text}>PIN</Text>
                         <TextInput placeholder="......" style={styles.textInput}/>
@@ -37,7 +38,7 @@ export default class Login extends React.Component{
                         <Text style={{color:'red',paddingLeft:40,paddingBottom:20}}>Forgot PIN?</Text>
                     </TouchableOpacity>
                     </KeyboardAvoidingView>
-                    <View style={{flex:2}}>
+                    <View style={{flex:1}}>
                             <View style={[styles.Button,{bottom:50}]}>
                                 <TouchableOpacity > 
                                     <Text style={styles.buttonText}>Login</Text>
