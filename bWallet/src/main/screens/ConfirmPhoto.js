@@ -15,7 +15,7 @@ export default class ConfirmPhoto extends React.Component{
                 <Text style={[Styles.text,{paddingLeft:20}]}>Recent Photo</Text>
                 <View style={design.imageview}>
                     <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('UploadPhoto')}>
                         <Image style={{alignItems:'baseline'}} source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
                 </View>
@@ -26,7 +26,7 @@ export default class ConfirmPhoto extends React.Component{
                 
                 <View style={design.imageview}>
                     <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Nationalid')}>
                         <Image source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
                 </View>
@@ -37,7 +37,7 @@ export default class ConfirmPhoto extends React.Component{
                 
                 <View style={design.imageview}>
                     <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Document')}>
                         <Image source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
                 </View>

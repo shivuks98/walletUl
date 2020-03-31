@@ -3,10 +3,9 @@ export default StyleSheet.create({
     container:{
         flex:1,
         flexDirection:"column",
-        // alignItems:'stretch',
         backgroundColor:"white",
         alignContent:'flex-start',
-        // padding:20
+
     },
     imagecontainer:{
         alignItems:'center',
@@ -33,9 +32,12 @@ export default StyleSheet.create({
     },
     numberView:{
         flexDirection:'row',
-        justifyContent:'space-evenly',
-        paddingRight:30,
-        
+        paddingRight:100,
+        paddingLeft:50,
+    },
+    error:{
+        color:'red',
+        // paddingLeft:50
     },
     Button:{
         width:'100%',

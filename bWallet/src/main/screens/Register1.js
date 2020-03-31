@@ -41,7 +41,7 @@ export default class Register1 extends Component{
 
     render(){
         var data =[
-            {value:987},{value:988},{value:999}]
+            {value:973},{value:965},{value:968},{value:974},{value:966},{value:971}]
         return(
             
             // <ScrollView style={styles.container} >
@@ -59,16 +59,18 @@ export default class Register1 extends Component{
                     </View>
                 </View>
                 </Modal>
-                    <KeyboardAvoidingView style={[styles.container]} >
+                    <KeyboardAvoidingView style={[styles.container,{paddingTop:70}]} >
                     
                     <View style={styles.textview}>
-                        <Text style={styles.text}>Mobile Number</Text>
+                        <Text style={styles.text}>Please enter your moible number</Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Dropdown  style={{width:50,padding:20}}data={data} label="987" />
-                        <TextInput placeholder="Mobile Number" style={styles.textInput}/>
+                        <View style={{width:60}}>
+                            <Dropdown  style={{}}data={data} value={973}/>
+                        </View>
+                        <TextInput placeholder="Mobile Number" style={[styles.textInput,{width:150}]}/>
                     </View>
-                    <View style={styles.textview}>
+                    <View style={[styles.textview,{paddingTop:20}]}>
                     <Text style={styles.text}>Enter your Email</Text>
                     <TextInput placeholder="Email" style={styles.textInput}/>
                     </View>
