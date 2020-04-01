@@ -1,9 +1,13 @@
 import React from 'react'
-import { View,Text,TextInput,TouchableOpacity,StyleSheet,Button, Image,Modal } from 'react-native'
+import { View,Text,TextInput,TouchableOpacity,StyleSheet,Button, Image,Modal,ScrollView,Keyboard, KeyboardAvoidingView } from 'react-native'
 import styles from '../../resources/styles/Styles'
 import Address from './addAddress'
 import RadioForm, {RadioButton,RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import SnackBar from 'react-native-snackbar'
+import CountryPicker,{CountryModalPicker} from 'react-native-country-picker-modal'
+
+
 
 var gender=[
     {label:'Male',value:0},
@@ -15,30 +19,86 @@ class RegisterForm extends React.Component{
         this.state={
             visible:false,
             value:0,
+            buttonClicked:false,
             date:false,
-            dob:null
+            dob:null,
+            firstname:null,
+            lastname:null,
+            gender:null,
+            nationality:null
         }
     }
-    handle=()=>{
-        setDataPickerVisibility(true)
+    validate=()=>{
+        this.setState({buttonClicked:true})
+       var firstname='Please enter First Name'
+        var lastname='Please enter Last Name'
+        var dob="Enter Date Of Birth"
+        var gender="Select Gender"
+        var nationality='Enter nationality'
+        var address="Add Address"
+        var text=''
+        var shows=false
+        if(this.state.firstname==null){
+            text=firstname
+        }else if(this.state.lastname==null){
+            text=lastname
+        }else if(this.state.dob==null ){
+            text=dob
+        }else if(this.state.gender==null){
+            text=gender
+        }else if(this.state.nationality==null){
+            text=nationality
+        }
+        else {
+        this.props.navigation.navigate('securityAnswer')
+        shows=true
+        }
+        if(shows==false){
+        SnackBar.show({
+            text:text,
+            duration:SnackBar.LENGTH_LONG,
+            action:{
+                text:'OK',
+                textColor:'red'
+            }
+            
+        })
+    }
+    }
+    handleDate=(name)=>{
+        
+       var month=parseInt(name.getMonth())+1
+        // console.log(name.getDate()+"/"+month+"/"+name.getFullYear())
+        var date=name.getDate()+"/"+month+"/"+name.getFullYear()
+        this.setState({
+            dob:date,
+            date:false
+        })
+        console.log(this.state.dob)
+        
     }
     render(){
         return(
             
             <View style={styles.container}>
                 
-                <View style={[styles.container,{paddingLeft:20,paddingRight:20}]}>
+                <ScrollView style={[styles.container,{paddingLeft:20,paddingRight:20}]}>
                     <Text style={styles.text}>First Name</Text>
-                    <TextInput style={styles.textInput}/>
+                    <TextInput style={styles.textInput} onChangeText={(fname)=>this.setState({firstname:fname})
+                    }/>
+                    {!this.state.firstname && this.state.buttonClicked && (<Text style={{color:'red'}}>First Name is Mandatory</Text>)}
                     <Text style={styles.text}>Last Name</Text>
-                    <TextInput style={styles.textInput}/>
+                    <TextInput style={styles.textInput} onChangeText={(lname)=>this.setState({lastname:lname})}/>
+                    {!this.state.lastname && this.state.buttonClicked && (<Text style={{color:'red'}}>Last Name is Mandatory</Text>)}
+                    
                     <Text style={styles.text}>Date of Birth</Text>
-                    <DateTimePickerModal isVisible={this.state.date} mode="date"
-                        onCancel={()=>this.setState({date:false,})} 
-                        onConfirm={(date)=>{this.setState({date:false,dob:date})
-                        console.log(this.state.dob)}
-                        }/>
-                    <TextInput style={styles.textInput}  onFocus={()=>this.setState({date:true})}/>
+                    <DateTimePickerModal isVisible={this.state.date} mode={"date"}
+                        onCancel={()=>this.setState({date:false,})} datePickerModeAndroid={'spinner'}
+                        onConfirm={(name)=>this.handleDate(name)} />
+                    <TextInput style={styles.textInput}  onFocus={()=>{this.setState({date:true})}} 
+                     onChange={(dob)=>this.setState({dob:dob})}value={this.state.dob}/>
+                     {!this.state.dob && this.state.buttonClicked && (<Text style={{color:'red'}}>Date Of Birth is Mandatory</Text>)}
+                    
                     <Text style={[styles.text,{paddingBottom:15}]}>Gender</Text>
                     
                     <RadioForm radio_props={gender}
@@ -46,13 +106,14 @@ class RegisterForm extends React.Component{
                      formHorizontal={true}
                      
                       labelStyle={{paddingLeft:10,paddingRight:'30%'}}
-                     onPress={(value)=>this.setState({value:value})}
+                     onPress={(value)=>this.setState({gender:value})}
                      />
-                     
-                     
-                    
                     <Text style={styles.text}>Nationality</Text>
-                    <TextInput style={styles.textInput}/>
+                    {/* <CountryPicker withModal  visible={false} onSelect={(name)=>this.setState({nationality:name})}/> */}
+                    <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}
+                    value={this.state.nationality} onFocus={CountryPicker}
+                    />
+                    {/* <TextInput style={styles.textInput} onChangeText={(name)=>this.setState({nationality:name})}/> */}
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text}>Add Address</Text>
                     <TouchableOpacity 
@@ -63,7 +124,10 @@ class RegisterForm extends React.Component{
                     </TouchableOpacity>
                     </View>
                     
-                    <Modal transparent={true} visible={this.state.visible}>
+                    <Modal transparent={true} 
+                    // visible={true}
+                    visible={this.state.visible}
+                    >
                         <View style={Styles.container}>
                             <View style={{margin:25,borderRadius:5,width:'80%',backgroundColor:'#ffff',flex:1}}>
                             <Address/>
@@ -77,15 +141,14 @@ class RegisterForm extends React.Component{
                     </View>
                 </View>
             </Modal>
-                </View>
+                </ScrollView>
                 
                 <View style={styles.Button }>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('securityAnswer')}>
+                    <TouchableOpacity onPress={this.validate}>
+                     {/* onPress={()=>this.props.navigation.navigate('securityAnswer')}> */}
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
-                </View>
-                
-                
+                </View> 
             </View>
         )
         

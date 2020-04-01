@@ -1,7 +1,8 @@
 import React from 'react'
-import {View, Image,Text,TouchableOpacity,TextInput,ScrollView,KeyboardAvoidingView } from 'react-native'
+import {View,Modal, Image,Text,TouchableOpacity,TextInput,ScrollView,KeyboardAvoidingView } from 'react-native'
 import {Dropdown} from 'react-native-material-dropdown'
-import ModalDropdown from 'react-native-modal-dropdown'
+// import ModalDropdown from 'react-native-modal-dropdown'
+import SnackBar from 'react-native-snackbar'
 
 import styles from '../../resources/styles/Styles'
 
@@ -15,16 +16,53 @@ export default class Login extends React.Component{
         this.state={
             value:989,
             mobileNo:null,
-            pin:null
+            pin:null,
+            visible:true
+            
         }
+    }
+    componentDidMount(){
+        setTimeout(()=>{
+            this.setState({visible:false})
+        },4000)
+    }
+    login=()=>{
+        if(this.state.mobileNo && this.state.pin){
+           var text1='Mobile Number must be atleast 8 digit';
+            var text2='PIN must be 4 Digit'
+            var text3=''
+            if(this.state.mobileNo.length<8){
+                text3=text1
+            }
+            else if(this.state.pin.length<4){
+                text3=text2
+            }
+            SnackBar.show({
+                text:text3,
+                duration:SnackBar.LENGTH_LONG,
+                action:{
+                    text:'OK',
+                    textColor:'red'
+                }
+            })
+        }
+
     }
     
     render()
     
     {
         return(
-               <KeyboardAvoidingView style={styles.container} >
-                    <KeyboardAvoidingView style={styles.container} >
+               <KeyboardAvoidingView style={styles.container}  >
+                   <Modal
+                   visible={this.state.visible}
+                //    visible={false}
+                   >
+                       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                        <Image style={{height:'100%',width:"100%"}} source={require('../../resources/images/bwalletScreen.png')}/>
+                   </View>
+                   </Modal>
+                    <KeyboardAvoidingView style={styles.container}>
                     <View style={styles.imagecontainer}>
                         <Image style={styles.image} source={require('../../resources/images/blogo.png')}/>
                     </View>
@@ -36,7 +74,9 @@ export default class Login extends React.Component{
                             <Dropdown data={data} value={this.state.value} fontSize={18}
                             onChangeText={(value)=>this.setState({value:value})}/>
                         </View>
-                        <TextInput maxLength={9} keyboardType='phone-pad'  placeholder="Mobile Number" 
+                        <TextInput maxLength={9} autoFocus={true} returnKeyType={"next"} 
+                        onSubmitEditing={()=>this.nextInput.focus()}
+                        keyboardType='phone-pad'  placeholder="Mobile Number" 
                         style={[styles.textInput,{width:'90%',fontSize:20,fontWeight:'bold'}]}
                         onChangeText={(number)=>{this.setState({mobileNo:number})
                         }}/>
@@ -44,10 +84,10 @@ export default class Login extends React.Component{
                     
                     
                     <View style={styles.textview}>
-                    {!this.state.mobileNo && (
-                    <Text style={styles.error}>Please Enter a Valid Mobile Number</Text>)}
+                    {!this.state.mobileNo && (<Text style={styles.error}>Please Enter a Valid Mobile Number</Text>)}
                         <Text style={styles.text}>PIN</Text>
-                        <TextInput maxLength={4} secureTextEntry keyboardType='numeric' 
+                        <TextInput ref={nextInput=>this.nextInput=nextInput}
+                         maxLength={4} secureTextEntry keyboardType='numeric' 
                         onChangeText={(pin)=>{this.setState({pin:pin})}}
                         placeholder="****" style={[styles.textInput,{fontSize:20,fontWeight:'bold'}]}/>
                         
@@ -62,7 +102,7 @@ export default class Login extends React.Component{
                     </KeyboardAvoidingView>
                     <View style={{flex:1}}>
                             <View style={[styles.Button,{bottom:50}]}>
-                                <TouchableOpacity > 
+                                <TouchableOpacity onPress={this.login} > 
                                     <Text style={styles.buttonText}>Login</Text>
                                 </TouchableOpacity>
                             </View>

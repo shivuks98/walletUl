@@ -20,16 +20,16 @@ export default class addAddress extends Component{
                     <Text style={styles.text}>Road/Street Name</Text>
                     <TextInput style={styles.textInput}/>
                     <Text> </Text>
-                    <View style={[styles.numberView,{justifyContent:'space-between',paddingRight:20}]}>
-                        <TextInput style={[styles.textInput,{width:"45%"}]} placeholder="Area"/>
+                    <View style={[styles.numberView,{justifyContent:'flex-start',paddingRight:10,paddingLeft:-10}]}>
+                        <TextInput style={[styles.textInput,{width:"45%",marginHorizontal:20}]} placeholder="Area"/>
                         <TextInput style={[styles.textInput,{width:'45%'}]} placeholder="Block"/> 
                     </View>
                     
                     <Text style={styles.text}>Country</Text>
-                    <CountryPicker  visible={false} />
-                    <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}>
+                    <CountryPicker  visible={false} withFlag={false} withFilter={true} />
+                    {/* <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}> */}
                     
-                    </TextInput>
+                    {/* </TextInput> */}
 
                 </View>
             </KeyboardAvoidingView>
