@@ -2,12 +2,35 @@ import React from 'react'
 import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 import  ImagePicker  from 'react-native-image-picker'
+import SnackBar from 'react-native-snackbar'
 
 export default class UploadPhoto extends React.Component{
     constructor(props){
         super(props)
         this.state={
             source:null
+        }
+    }
+    handleNext=()=>{
+        var photo='Choose the Photo'
+        
+        var text=""
+        var showSnack=true
+        if(!this.state.source){
+            text=photo
+        }else{
+            this.props.navigation.navigate('Nationalid')
+            showSnack=false
+        }
+        if(showSnack){
+           SnackBar.show({
+               text:text,
+               duration:SnackBar.LENGTH_LONG,
+               action:{
+                   text:'OK',
+                   textColor:'red'
+               }
+           }) 
         }
     }
      handleCamera=()=>{
@@ -67,7 +90,9 @@ export default class UploadPhoto extends React.Component{
                 </View>
                 </View>
                 <View style={Styles.Button}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Nationalid')}>
+                    <TouchableOpacity onPress={this.handleNext}
+                    // onPress={()=>this.props.navigation.navigate('Nationalid')}
+                    >
                         <Text style={Styles.buttonText}>NEXT</Text>
                     </TouchableOpacity>
                 </View>

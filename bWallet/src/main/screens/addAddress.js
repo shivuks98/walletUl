@@ -14,15 +14,23 @@ export default class addAddress extends Component{
                     <Image source={require('../../resources/images/home.png')}/>
                     </View>
                     <Text style={styles.text}>Building/ House NO</Text>
-                    <TextInput style={styles.textInput}/>
+                    <View style={{flexDirection:'row'}}>
+                    <TextInput style={[styles.textInput,{width:'100%'}]}/>
+                    <Text style={{color:'red',paddingTop:15}}>*</Text>
+                    </View>
                     <Text style={styles.text}>Flat No</Text>
                     <TextInput style={styles.textInput}/>
                     <Text style={styles.text}>Road/Street Name</Text>
-                    <TextInput style={styles.textInput}/>
-                    <Text> </Text>
-                    <View style={[styles.numberView,{justifyContent:'flex-start',paddingRight:10,paddingLeft:-10}]}>
-                        <TextInput style={[styles.textInput,{width:"45%",marginHorizontal:20}]} placeholder="Area"/>
-                        <TextInput style={[styles.textInput,{width:'45%'}]} placeholder="Block"/> 
+                    <View style={{flexDirection:'row'}}>
+                    <TextInput style={[styles.textInput,{width:'100%'}]}/>
+                    <Text style={{color:'red',paddingTop:15}}>*</Text>
+                    </View>
+                    {/* <Text> </Text> */}
+                    <View style={{flexDirection:'row',justifyContent:'center',paddingRight:10,}}>
+                        <TextInput style={[styles.textInput,{width:"45%",marginHorizontal:10}]} placeholder="Area"/>
+                        <Text style={{color:'red',paddingTop:15}}>*</Text>
+                        <TextInput style={[styles.textInput,{width:'47%',marginHorizontal:6}]} placeholder="Block"/> 
+                        <Text style={{color:'red',paddingTop:15}}>*</Text>
                     </View>
                     
                     <Text style={styles.text}>Country</Text>

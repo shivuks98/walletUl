@@ -3,7 +3,9 @@ import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 import  ImagePicker  from 'react-native-image-picker'
 import RadioForm from 'react-native-simple-radio-button'
-radio=[
+import SnackBar from 'react-native-snackbar'
+
+radio_prop=[
     {label:'Driving License',value:1},
     {label:'Passport',value:2}
 ]
@@ -13,7 +15,8 @@ export default class UploadDocument extends React.Component{
         this.state={
             frontId:null,
             backId:null,
-            value:1
+            radio:1,
+            Id:null
         }
     }
      handleFrontId=()=>{
@@ -70,6 +73,36 @@ export default class UploadDocument extends React.Component{
             }
         })
     }
+    handleNext=()=>{
+        console.log(this.state.value)
+        var idno='Enter the National ID Number'
+        var front='Choose the front image'
+        var back='Choose the back image'
+        
+        var text=""
+        var showSnack=true
+        if(!this.state.Id){
+            text=idno
+        }else if(!this.state.frontId){
+            text=front
+        }
+        else if(!this.state.backId && this.state.radio ==1){
+            text=back
+        }else{
+            this.props.navigation.navigate('Confirm')
+            showSnack=false
+        }
+        if(showSnack){
+           SnackBar.show({
+               text:text,
+               duration:SnackBar.LENGTH_INDEFINITE,
+               action:{
+                   text:'OK',
+                   textColor:'red'
+               }
+           }) 
+        }
+    }
     
     render(){
         return(
@@ -78,14 +111,15 @@ export default class UploadDocument extends React.Component{
                 <View style={[Styles.container,{alignItems:'center',paddingTop:'10%'}]}>
                     <Text style={{fontSize:20,fontWeight:'bold',paddingBottom:10}}>Choose ID document</Text>
                     <View style={{paddingLeft:30,width:'100%'}}>
-                    <RadioForm  radio_props={radio} labelStyle={{fontSize:18}}  onPress={(v)=>
-                        {this.setState({value:v})
-                        // console.log(this.state.value)
+                    <RadioForm  radio_props={radio_prop} labelStyle={{fontSize:18}}  onPress={(v)=>
+                        {this.setState({radio:v,frontId:null,backId:null})
+                        // console.log(this.state.radio)
                     }
                         }/>
                         </View>
                     <Text style={Styles.text}>National ID</Text> 
-                    <TextInput style={[Styles.textInput,{width:'57%',borderBottomWidth:2.3}]}/>
+                    <TextInput onChangeText={(id)=>this.setState({Id:id})}
+                    style={[Styles.textInput,{width:'57%',borderBottomWidth:2.3}]}/>
                     
                 {/* <Image style={{width:130,height:110,margin:10,borderColor:'black',borderWidth:1,}} 
                 source={require('../../resources/images/fileupload.png')}/> */}
@@ -105,20 +139,21 @@ export default class UploadDocument extends React.Component{
                     </View>
                     <View>
                     <TouchableOpacity onPress={this.handleBackId}>
-                        { this.state.value == 1 &&
+                        { this.state.radio == 1 &&
                         !this.state.backId  && (<Image style={Styles.photo} 
                         source={require('../../resources/images/fileupload.png')}/>)}
                         { 
                         this.state.backId  && (<Image style={Styles.photo} 
                         source={this.state.backId}/>)}
                     </TouchableOpacity>
-                    {this.state.value==1 &&(
+                    {this.state.radio==1 &&(
                     <Text style={Styles.text}>ID Back Image</Text>)}
                     </View>
                 </View>
                 </View>
                 <View style={Styles.Button}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Confirm')} >
+                    <TouchableOpacity onPress={this.handleNext}>
+                    {/* Press={()=>this.props.navigation.navigate('Confirm')} > */}
                         <Text style={Styles.buttonText}>NEXT</Text>
                     </TouchableOpacity>
                 </View>

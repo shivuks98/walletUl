@@ -25,7 +25,8 @@ class RegisterForm extends React.Component{
             firstname:null,
             lastname:null,
             gender:null,
-            nationality:null
+            nationality:null,
+            saveAddress:false
         }
     }
     validate=()=>{
@@ -95,8 +96,10 @@ class RegisterForm extends React.Component{
                     <DateTimePickerModal isVisible={this.state.date} mode={"date"}
                         onCancel={()=>this.setState({date:false,})} datePickerModeAndroid={'spinner'}
                         onConfirm={(name)=>this.handleDate(name)} />
-                    <TextInput style={styles.textInput}  onFocus={()=>{this.setState({date:true})}} 
-                     onChange={(dob)=>this.setState({dob:dob})}value={this.state.dob}/>
+                        <Text onPress={()=>this.setState({date:true})} 
+                        style={[styles.textInput,styles.text,{paddingTop:10}]}>{this.state.dob}</Text>
+                    {/* <TextInput style={styles.textInput}  onFocus={()=>{this.setState({date:true})}} 
+                     onChange={(dob)=>this.setState({dob:dob})}value={this.state.dob}/> */}
                      {!this.state.dob && this.state.buttonClicked && (<Text style={{color:'red'}}>Date Of Birth is Mandatory</Text>)}
                     
                     <Text style={[styles.text,{paddingBottom:15}]}>Gender</Text>
@@ -109,10 +112,16 @@ class RegisterForm extends React.Component{
                      onPress={(value)=>this.setState({gender:value})}
                      />
                     <Text style={styles.text}>Nationality</Text>
-                    {/* <CountryPicker withModal  visible={false} onSelect={(name)=>this.setState({nationality:name})}/> */}
-                    <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}
-                    value={this.state.nationality} onFocus={CountryPicker}
+                    <CountryPicker withFlag={false} withFilter={true}  visible={false} 
+                   
+                    onSelect={(name)=>{this.setState({nationality:name.name})
+                    console.log(this.state.nationality)}}
                     />
+                    {/* <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}
+                    value={this.state.nationality} onFocus={CountryPicker}
+                    /> */}
+                    <Text 
+                    style={[styles.textInput,styles.text]}>{this.state.nationality}</Text>
                     {/* <TextInput style={styles.textInput} onChangeText={(name)=>this.setState({nationality:name})}/> */}
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text}>Add Address</Text>
@@ -120,7 +129,11 @@ class RegisterForm extends React.Component{
                     onPress={()=>this.setState({visible:true})}
                     // onPress={()=>this.props.navigation.navigate('addAddress')}
                     >
-                    <Image style={{flexShrink:2}}source={require('../../resources/images/add.png')}/>
+                    {!this.state.saveAddress && (
+                    <Image style={{flexShrink:2}}source={require('../../resources/images/add.png')}/>)}
+                     {this.state.saveAddress && (
+                    <Image style={{height:35,}}source={require('../../resources/images/checkmark.png')}/>)}
+                    {/* <Image style={{flexShrink:2}}source={require('../../resources/images/add.png')}/> */}
                     </TouchableOpacity>
                     </View>
                     
@@ -132,7 +145,7 @@ class RegisterForm extends React.Component{
                             <View style={{margin:25,borderRadius:5,width:'80%',backgroundColor:'#ffff',flex:1}}>
                             <Address/>
                             <View  >
-                            <TouchableOpacity onPress={()=>this.setState({visible:false})}
+                            <TouchableOpacity onPress={()=>this.setState({visible:false,saveAddress:true})}
                             style={[styles.Button,{width:100,bottom:10,borderRadius:10,alignSelf:'center'}]}>
                                 <Text style={styles.buttonText}>Save</Text>
                             </TouchableOpacity>

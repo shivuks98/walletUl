@@ -26,7 +26,7 @@ class RegisterVerify extends React.Component{
         if(shows==false){
         Snackbar.show({
             text:text,
-            duration:Snackbar.LENGTH_LONG,
+            duration:Snackbar.LENGTH_INDEFINITE,
             action:{
                 text:'OK',
                 textColor:'red'

@@ -14,29 +14,40 @@ export default class ConfirmPhoto extends React.Component{
             <View style={Styles.container}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>Recent Photo</Text>
                 <View style={design.imageview}>
-                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                        <View style={{justifyContent:'center',flexDirection:'row',borderWidth:1,borderRadius:10,height:90,width:100}}>
+                        <Image style={{width:"100%",height:"100%"}} source={require('../../resources/images/fileupload.png')} />
+                        {/* <Image style={{width:50,height:90}} source={require('../../resources/images/fileupload.png')} /> */}
+                    </View>
+                    {/* <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} /> */}
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('UploadPhoto')}>
-                        <Image style={{alignItems:'baseline'}} source={require('../../resources/images/edit.png')} />
+                        <Image style={{}} source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
                 </View>
                 <View style={design.content}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>National ID</Text>
-                <TextInput style={[Styles.textInput,{width:'50%'}]} />
+                <Text style={[Styles.textInput,Styles.text,{width:'50%',margin:10}]} />
                 </View>
                 
                 <View style={design.imageview}>
-                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                    <View style={{flexDirection:'row',borderWidth:1,borderRadius:10,margin:1,height:90,width:100}}>
+                        <Image style={{width:50,height:90}} source={require('../../resources/images/fileupload.png')} />
+                        <Image style={{width:50,height:90}} source={require('../../resources/images/fileupload.png')} />
+                    </View>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Nationalid')}>
-                        <Image source={require('../../resources/images/edit.png')} />
+                        <Image style={{}} source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
                 </View>
                 <View style={design.content}>
                 <Text style={[Styles.text,{paddingLeft:20}]}>Passport/DL</Text>
-                <TextInput style={[Styles.textInput,{width:'50%'}]} />
+                <Text style={[Styles.textInput,Styles.text,{width:'50%',margin:10}]} />
                 </View>
                 
                 <View style={design.imageview}>
-                    <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} />
+                    <View style={{flexDirection:'row',borderWidth:1,borderRadius:10,margin:1,height:90,width:100}}>
+                        <Image style={{width:50,height:90}} source={require('../../resources/images/fileupload.png')} />
+                        <Image style={{width:50,height:90}} source={require('../../resources/images/fileupload.png')} />
+                    </View>
+                    {/* <Image style={Styles.photo} source={require('../../resources/images/fileupload.png')} /> */}
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Document')}>
                         <Image source={require('../../resources/images/edit.png')} />
                     </TouchableOpacity>
@@ -56,7 +67,8 @@ const design=StyleSheet.create({
     imageview:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+       
     },
     content:{
         flexDirection:'row',

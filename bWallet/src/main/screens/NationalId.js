@@ -2,13 +2,44 @@ import React from 'react'
 import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 import  ImagePicker  from 'react-native-image-picker'
+import SnackBar from 'react-native-snackbar'
 
 export default class NationalId extends React.Component{
     constructor(props){
         super(props)
         this.state={
             frontId:null,
-            backId:null
+            backId:null,
+            idnumber:null
+        }
+    }
+    handleNext=()=>{
+        var idno='Enter the National ID Number'
+        var front='Choose the front image'
+        var back='Choose the back image'
+        
+        var text=""
+        var showSnack=true
+        if(!this.state.idnumber){
+            text=idno
+        }else if(!this.state.frontId){
+            text=front
+        }
+        else if(!this.state.backId){
+            text=back
+        }else{
+            this.props.navigation.navigate('Document')
+            showSnack=false
+        }
+        if(showSnack){
+           SnackBar.show({
+               text:text,
+               duration:SnackBar.LENGTH_INDEFINITE,
+               action:{
+                   text:'OK',
+                   textColor:'red'
+               }
+           }) 
         }
     }
      handleFrontId=()=>{
@@ -70,7 +101,8 @@ export default class NationalId extends React.Component{
             <View style={Styles.container}>
                 <View style={[Styles.container,{alignItems:'center',paddingTop:'10%'}]}>
                     <Text style={Styles.text}>National ID</Text> 
-                    <TextInput style={[Styles.textInput,{width:'57%',borderBottomWidth:2.3}]}/>
+                    <TextInput onChangeText={(id)=>this.setState({idnumber:id})}
+                    style={[Styles.textInput,{width:'57%',borderBottomWidth:2.3}]}/>
                     
                 {/* <Image style={{width:130,height:110,margin:10,borderColor:'black',borderWidth:1,}} 
                 source={require('../../resources/images/fileupload.png')}/> */}
@@ -97,7 +129,8 @@ export default class NationalId extends React.Component{
                 <Text style={[Styles.text,{}]}> ID Front Image    ID Back Image</Text>
                 </View>
                 <View style={Styles.Button}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Document')} >
+                    <TouchableOpacity onPress={this.handleNext}>
+                    {/* onPress={()=>this.props.navigation.navigate('Document')} > */}
                         <Text style={Styles.buttonText}>NEXT</Text>
                     </TouchableOpacity>
                 </View>
