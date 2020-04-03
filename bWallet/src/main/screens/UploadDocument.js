@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
+import { View,Text,TextInput,TouchableOpacity,Image,AsyncStorage } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 import  ImagePicker  from 'react-native-image-picker'
 import RadioForm from 'react-native-simple-radio-button'
@@ -89,6 +89,7 @@ export default class UploadDocument extends React.Component{
         else if(!this.state.backId && this.state.radio ==1){
             text=back
         }else{
+            // AsyncStorage.setItem('userphoto',this.state.source)
             this.props.navigation.navigate('Confirm')
             showSnack=false
         }

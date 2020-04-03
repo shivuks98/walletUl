@@ -1,88 +1,46 @@
 import React from 'react'
 import {Dropdown} from 'react-native-material-dropdown'
-import { View,StyleSheet, Text,TextInput,ScrollView,TouchableOpacity,KeyboardAvoidingView,Image } from 'react-native'
+import { View,StyleSheet,ActivityIndicator,AsyncStorage, Text,TextInput,ScrollView,TouchableOpacity,KeyboardAvoidingView,Image } from 'react-native'
 // import styles from '../../resources/styles/Styles'
 
 class test extends React.Component{
+    constructor(props){
+        super(props)
+    }
     render(){
-        var data =[{
-            value:987
-        },
-        {value:988
-        },
-        {
-            value:999
-        }
-    ]
         return(
-        <View style={styles.container}>
-            <KeyboardAvoidingView >
-            <View style={styles.imagecontainer}>
-                        <Image style={styles.image} source={require('../../resources/images/blogo.png')}/>
-                    </View>
-                    <View style={styles.textview}>
-                        <Text style={styles.text}>Mobile Number</Text>
-                    </View>
-                    <View style={styles.numberView}>
-                        <Dropdown  style={{width:50,padding:20}}data={data} label="987" />
-                        <TextInput placeholder="Mobile Number" style={styles.textInput}/>
-                    </View>
-                    <View style={styles.textview}>
-                    <Text style={styles.text}>PIN</Text>
-                    <TextInput placeholder="......" style={styles.textInput}/>
-                    </View>
-                    <TouchableOpacity > 
-                        <Text style={{color:'red',paddingLeft:40,paddingBottom:20}}>Forgot PIN?</Text>
-                    </TouchableOpacity>
-            </KeyboardAvoidingView>
-            <View style={styles.container}>
-                <View style={styles.btn1}>
-                    <TouchableOpacity>
-                        <Text style={styles.text}>
-                            Login   
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.btn}>
-                    <TouchableOpacity>
-                        <Text style={styles.text}>
-                            Register   
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+            
+            <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
+                <ActivityIndicator /> 
+                <Text>hii</Text>
+                <TouchableOpacity onPress={this.save}>
+                    <Text>
+                        click to save
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.show}>
+                    <Text>
+                        click to show
+                    </Text>
+                </TouchableOpacity>
             </View>
-        </View>
         )
     }
-}
-const styles=StyleSheet.create({
-    // style={styles.buttonText} 
-    container:{
-        flex:1,
-        backgroundColor:'#ffff'
-    },
-    btn:{
-        position:'absolute',
-        bottom:0,
-        backgroundColor:'red',
-        width:'100%',
-        justifyContent:'center',
-        alignContent:'stretch'
-        
-    },
-    btn1:{
-        position:'absolute',
-        bottom:20,
-        backgroundColor:'red',
-        width:'100%',
-        justifyContent:'center',
-        alignContent:'stretch'
-        
-    },
-    text:{
-        textAlign:'center'
+    save=()=>{
+        let user={
+            name:'shivu',
+            email:'abcd'
+        }
+        AsyncStorage.setItem('name',JSON.stringify(user))
+        this.props.navigation.navigate('l')
+        // this.props.navigation.navigate('l')
     }
-})
-
-
+    show=async ()=>{
+        try{
+            let name=await AsyncStorage.getItem('name')
+            alert(name)
+        }
+        catch(e){alert(e)}
+    }
+}
 export default test

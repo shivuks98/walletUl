@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
+import { View,Text,TextInput,TouchableOpacity,Image,AsyncStorage } from 'react-native'
 import Styles from '../../resources/styles/Styles'
 import  ImagePicker  from 'react-native-image-picker'
 import SnackBar from 'react-native-snackbar'
@@ -12,13 +12,16 @@ export default class UploadPhoto extends React.Component{
         }
     }
     handleNext=()=>{
-        var photo='Choose the Photo'
+        var photo='Select a image'
         
         var text=""
         var showSnack=true
         if(!this.state.source){
             text=photo
         }else{
+            console.log("from the upload photo "+this.state.source)
+            // AsyncStorage.setItem('userphoto',JSON.stringify(this.state.source))
+            // this.props.navigation.navigate('Confirm')
             this.props.navigation.navigate('Nationalid')
             showSnack=false
         }

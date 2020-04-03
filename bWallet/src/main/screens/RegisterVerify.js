@@ -2,13 +2,33 @@ import React from 'react'
 import { View,Text,TextInput,TouchableOpacity,Image } from 'react-native'
 import styles from '../../resources/styles/Styles'
 import Snackbar from 'react-native-snackbar'
-
+//on timer expire = "TImer has expired before verification,please regenerate OTP"
 class RegisterVerify extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            otp:0
+            otp:0,
+            timer:10
         }
+    }
+    componentDidMount(){
+        this.interval=setInterval(
+            ()=>this.setState((prevState)=>({timer:prevState.timer-1}) ),1000
+        )
+    }
+    componentDidUpdate(){
+        if(this.state.timer==0){
+            clearInterval(this.interval)
+        }  
+    }
+    componentWillUnmount(){
+        clearInterval(this.interval)
+    }
+    resendOtp=()=>{
+        this.setState({timer:10})
+        this.interval=setInterval(
+            ()=>this.setState((prevState)=>({timer:prevState.timer-1}) ),1000
+        )
     }
     validate=()=>{
         
@@ -48,10 +68,17 @@ class RegisterVerify extends React.Component{
                     placeholder="XXXXXX" style={styles.textInput} keyboardType='number-pad'/>
                     <Text style={styles.text}>Did not get the code?</Text>
                     <View>
-                        <TouchableOpacity>
-                            <Text style={[styles.text,{color:'red',textAlign:'right'}]}>
-                                Click to resend OTP</Text>
-                        </TouchableOpacity>
+                        {this.state.timer !=0 &&(
+                       <View style={{flexDirection:'row'}}> 
+                       {/* <Image style={{margin:10}}source={require('../../resources/images/restart.png')}/> */}
+                    
+                       <Text style={[styles.text,{color:'red',textAlign:'left'}]}>
+                                Click to resend in {this.state.timer} seconds.</Text></View>
+                                )}
+                        {this.state.timer==0 &&<TouchableOpacity onPress={this.resendOtp}>
+                            <Text style={[styles.text,{color:'red',textAlign:'left'}]}>
+                                Click to resend </Text>
+                        </TouchableOpacity>}
                     </View>
                 </View>
                 <View style={styles.Button}>
