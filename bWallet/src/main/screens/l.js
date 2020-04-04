@@ -10,39 +10,18 @@ export default class l extends Component{
     super(props)
     this.state={timer:5}
   }
-  componentDidMount(){
-    this.interval = setInterval(
-      () => this.setState((prevState)=> ({ timer: prevState.timer - 1 })),
-      1000
-    );
-  }
-  componentDidUpdate(){
-    if(this.state.timer==0){
-      clearInterval(this.interval)
-    }
-  }
+  
 render(){
   return(
     
       <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
           <Text>hii</Text>
-          <TouchableOpacity onPress={this.save}>
+          <TouchableOpacity >
               <Text>
-                  {this.state.timer}
+                hi
               </Text>
           </TouchableOpacity>
       </View>
   )
 }
-save=async()=>{
-  try{
-  let name=await AsyncStorage.getItem('name')
-  alert(name)
-  }catch(e){
-    alert(e)
-  }
-  // this.props.navigation.navigate('l')
-}
-  
-
 }

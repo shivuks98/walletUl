@@ -39,16 +39,16 @@ export default class routes extends React.Component{
                     {/* <Stack.Screen name='test' component={Test2}/> */}
                     
                     {/* <Stack.Screen name='l' component={Test}/> */}
-                    {/* <Stack.Screen name='Login' component={Login}/>
+                    <Stack.Screen name='Login' component={Login}/>
                     <Stack.Screen name='terms' component={terms} options={{title:'Terms and Conditions'}}/>
-                    <Stack.Screen name='register1' component={Register1} options={{title:'Registration'}}/> */}
-                    {/* <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/> */}
-                    {/* <Stack.Screen name='registerForm' component={RegisterForm} options={{title:'Registration'}}/> */}
-                    {/* <Stack.Screen name='addAddress' component={addAddress} options={{title:'Registration'}}/> */}
-                    {/* <Stack.Screen name='securityAnswer' component={SetSecurity} options={{title:'Set Security Answers'}}/> */}
-                    {/* <Stack.Screen name='SetPin' component={SetPin} options={{title:'Set Pin'}}/> */}
-                    {/* <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Recent Photo'}}/> */}
-                    {/* <Stack.Screen name='Nationalid' component={NationalId} options={{title:'National ID'}}/> */}
+                    <Stack.Screen name='register1' component={Register1} options={{title:'Registration'}}/>
+                    <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/>
+                    <Stack.Screen name='registerForm' component={RegisterForm} options={{title:'Registration'}}/>
+                    <Stack.Screen name='addAddress' component={addAddress} options={{title:'Registration'}}/>
+                    <Stack.Screen name='securityAnswer' component={SetSecurity} options={{title:'Set Security Answers'}}/>
+                    <Stack.Screen name='SetPin' component={SetPin} options={{title:'Set Pin'}}/>
+                    <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Recent Photo'}}/>
+                    <Stack.Screen name='Nationalid' component={NationalId} options={{title:'National ID'}}/>
                     <Stack.Screen name='Document' component={UploadDocument} options={{title:'Upload Document'}}/>
                     <Stack.Screen name='Confirm' component={ConfirmPhoto} options={{title:'Confirm'}}/>
                     
