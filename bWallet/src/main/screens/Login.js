@@ -53,7 +53,8 @@ export default class Login extends React.Component{
     
     {
         return(
-               <KeyboardAvoidingView style={styles.container}  >
+               <KeyboardAvoidingView style={styles.container} behavior="padding" >
+                   
                    <Modal
                    visible={this.state.visible}
                 //    visible={false}
@@ -62,7 +63,7 @@ export default class Login extends React.Component{
                         <Image style={{height:'100%',width:"100%"}} source={require('../../resources/images/bwalletScreen.png')}/>
                    </View>
                    </Modal>
-                    <KeyboardAvoidingView style={styles.container}>
+                    <ScrollView>
                     <View style={styles.imagecontainer}>
                         <Image style={styles.image} source={require('../../resources/images/blogo.png')}/>
                     </View>
@@ -95,11 +96,12 @@ export default class Login extends React.Component{
                         <Text style={styles.error}>Please Enter PIN</Text>)}
                     
                     </View>
-
+                            
                     <TouchableOpacity > 
                         <Text style={{color:'red',paddingLeft:50,paddingTop:10}}>Forgot PIN?</Text>
                     </TouchableOpacity>
-                    </KeyboardAvoidingView>
+                    
+                    </ScrollView>
                     <View style={{flex:1}}>
                             <View style={[styles.Button,{bottom:50}]}>
                                 <TouchableOpacity onPress={this.login} > 
@@ -112,7 +114,7 @@ export default class Login extends React.Component{
                                 </TouchableOpacity>
                             </View>
                     </View>         
-               
+                            
                     </KeyboardAvoidingView>
             
         )

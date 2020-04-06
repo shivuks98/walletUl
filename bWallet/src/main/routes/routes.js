@@ -21,12 +21,15 @@ import ConfirmPhoto from '../screens/ConfirmPhoto'
 
 
 const Stack=createStackNavigator();
+const Stack1=createStackNavigator();
 
 export default class routes extends React.Component{
     constructor(props){
         super(props)
     }
+    
     render(){
+        
         return(
             // <Text>hii</Text>
             <NavigationContainer >
@@ -36,15 +39,12 @@ export default class routes extends React.Component{
                     headerTintColor:'white',
                     headerRight:()=><Image style={{height:30,width:100,}}
                 source={require('../../resources/images/bWallet2.png')}/>}}>
-                    {/* <Stack.Screen name='test' component={Test2}/> */}
                     
-                    {/* <Stack.Screen name='l' component={Test}/> */}
-                    <Stack.Screen name='Login' component={Login}/>
+                    {/* <Stack.Screen name='Login' component={Login}/>
                     <Stack.Screen name='terms' component={terms} options={{title:'Terms and Conditions'}}/>
                     <Stack.Screen name='register1' component={Register1} options={{title:'Registration'}}/>
-                    <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/>
+                    <Stack.Screen name='verify' component={Register2} options={{title:'Registration'}}/> */}
                     <Stack.Screen name='registerForm' component={RegisterForm} options={{title:'Registration'}}/>
-                    <Stack.Screen name='addAddress' component={addAddress} options={{title:'Registration'}}/>
                     <Stack.Screen name='securityAnswer' component={SetSecurity} options={{title:'Set Security Answers'}}/>
                     <Stack.Screen name='SetPin' component={SetPin} options={{title:'Set Pin'}}/>
                     <Stack.Screen name='UploadPhoto' component={UploadPhoto} options={{title:'Upload Recent Photo'}}/>
@@ -52,7 +52,12 @@ export default class routes extends React.Component{
                     <Stack.Screen name='Document' component={UploadDocument} options={{title:'Upload Document'}}/>
                     <Stack.Screen name='Confirm' component={ConfirmPhoto} options={{title:'Confirm'}}/>
                     
+                    {/*Below Screen are Not to be used  */}
+                    {/* <Stack.Screen name='test' component={Test2}/> */}
+                    
+                    {/* <Stack.Screen name='l' component={Stack1.Screen}/> */}
                 </Stack.Navigator>
+                
             </NavigationContainer>
 
         )

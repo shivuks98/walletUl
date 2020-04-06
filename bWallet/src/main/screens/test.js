@@ -11,9 +11,9 @@ class test extends React.Component{
         return(
             
             <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
-                <ActivityIndicator /> 
-                <Text>hii</Text>
-                <TouchableOpacity >
+                
+                
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate("l")}>
                     <Text>
                         click
                     </Text>

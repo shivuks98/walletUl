@@ -1,7 +1,8 @@
 import React from 'react'
 import { View,Text,TextInput,TouchableOpacity,StyleSheet,Button, Image,Modal,ScrollView,Keyboard, KeyboardAvoidingView } from 'react-native'
 import styles from '../../resources/styles/Styles'
-import Address from './addAddress'
+import {Dropdown} from 'react-native-material-dropdown'
+import ModalDropdown from 'react-native-modal-dropdown'
 import RadioForm, {RadioButton,RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import SnackBar from 'react-native-snackbar'
@@ -13,6 +14,9 @@ var gender=[
     {label:'Male',value:0},
     {label:'Female', value:1}
 ]
+////bahrain, kuwait oman,qatar, saudi arabia, united arab  emirates
+var country=[{value:"Bahrain"},{value:"Kuwait"},{value:"Oman"},
+{value:"Qatar"},{value:"Saudi Arabia"},{value:"United Arab Emirates"},]
 class RegisterForm extends React.Component{
     constructor(props){
         super(props)
@@ -26,7 +30,8 @@ class RegisterForm extends React.Component{
             lastname:null,
             gender:null,
             nationality:null,
-            saveAddress:false
+            saveAddress:false,
+            country:country[0].value
         }
     }
     validate=()=>{
@@ -120,6 +125,7 @@ class RegisterForm extends React.Component{
                     {/* <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}
                     value={this.state.nationality} onFocus={CountryPicker}
                     /> */}
+                    
                     <Text 
                     style={[styles.textInput,styles.text]}>{this.state.nationality}</Text>
                     {/* <TextInput style={styles.textInput} onChangeText={(name)=>this.setState({nationality:name})}/> */}
@@ -141,18 +147,58 @@ class RegisterForm extends React.Component{
                     // visible={true}
                     visible={this.state.visible}
                     >
+                        
                         <View style={Styles.container}>
                             <View style={{margin:25,borderRadius:5,width:'80%',backgroundColor:'#ffff',flex:1}}>
-                            <Address/>
-                            <View  >
+                            {/* <Address/> */}
+                            <ScrollView>
+                            <View style={{padding:20,paddingTop:0}}>
+                    <View style={{alignItems:'center'}}>
+                    <Image source={require('../../resources/images/home.png')}/>
+                    </View>
+                    <Text style={styles.text}>Building/ House NO</Text>
+                    <View style={{flexDirection:'row'}}>
+                    <TextInput style={[styles.textInput,{width:'100%'}]}/>
+                    <Text style={{color:'red',paddingTop:15}}>*</Text>
+                    </View>
+                    <Text style={[styles.text,{paddingTop:25}]}>Flat No</Text>
+                    <TextInput style={styles.textInput}/>
+                    <Text style={[styles.text,{paddingTop:25}]}>Road/Street Name</Text>
+                    <View style={{flexDirection:'row'}}>
+                    <TextInput style={[styles.textInput,{width:'100%'}]}/>
+                    <Text style={{color:'red',paddingTop:15}}>*</Text>
+                    </View>
+                    {/* <Text> </Text> */}
+                    <View style={{flexDirection:'row',justifyContent:'center',paddingRight:10,}}>
+                        <TextInput style={[styles.textInput,{paddingTop:25,width:"45%",marginHorizontal:10}]} placeholder="Area"/>
+                        <Text style={{color:'red',paddingTop:25}}>*</Text>
+                        <TextInput keyboardType='number-pad' style={[styles.textInput,{paddingTop:25,width:'47%',marginHorizontal:6}]} placeholder="Block"/> 
+                        <Text style={{color:'red',paddingTop:25}}>*</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                    <Text style={[styles.text,{paddingTop:25}]}>Country</Text>
+                    <Text style={{color:'red',paddingTop:33}}>*</Text>
+                    </View>
+                    {/* <ModalDropdown options={country}></ModalDropdown> */}
+                    <View>
+                    <Dropdown data={country} value={this.state.country} dropdownPosition={4}   />
+                    </View>
+                     {/* <TextInput onAccessibilityAction={CountryPicker} style={styles.textInput}> */}
+                    
+                    {/* </TextInput> */}
+
+                </View>
+                            <View style={{flex:1}} >
                             <TouchableOpacity onPress={()=>this.setState({visible:false,saveAddress:true})}
-                            style={[styles.Button,{width:100,bottom:10,borderRadius:10,alignSelf:'center'}]}>
+                            style={[styles.Button,{position:'relative',width:100,bottom:10,borderRadius:10,alignSelf:'center'}]}>
                                 <Text style={styles.buttonText}>Save</Text>
                             </TouchableOpacity>
                             </View>
                             {/* <Button title='Save' style={{}} onPress={()=>this.setState({visible:false})}></Button> */}
+                            </ScrollView>
                     </View>
                 </View>
+               
             </Modal>
                 </ScrollView>
                 
